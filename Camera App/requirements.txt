@@ -1,0 +1,5 @@
+tkinter
+custom-tkinter
+opencv-python==4.8.0
+pillow==10.2.0
+pyinstaller==6.9.0

@@ -1,0 +1,2 @@
+cmd:> pyinstaller --add-data "\Python\Lib\site-packages\cv2":"cv2" --add-data "\Python\Lib\site-packages\deepface":"deepface" --add-data "\Python\Lib\site-packages\PIL":"PIL" Face_Analysis.py
+
