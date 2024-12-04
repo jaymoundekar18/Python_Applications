@@ -5,10 +5,7 @@ Welcome to the my **Python Applications repository!** This repository contains v
 
 - [Overview](#overview)
 - [Applications](#applications)
-  - [Face Detection App](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face%20Detection/README.md)
-  - [Other Applications](#other-applications)
 - [Installation](#installation)
-- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -18,11 +15,21 @@ This repository showcases a variety of Python applications, including face detec
 
 ## Applications
 
-### Face Detection App
-This application uses OpenCV and `facenet_pytorch` to perform real-time face detection through a webcam. It can identify faces in live video feed and display whether a face is detected or not.
+  * ### Face Detection App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face%20Detection/README.md)
+      - This application uses OpenCV and `facenet_pytorch` to perform real-time face detection through a webcam. It can identify faces in live video feed and display whether a face is detected or not.
 
-### Other Applications
-- Add details of other applications here (e.g., image processing, machine learning models, etc.)
+  * ### Face Extraction App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face%20Extraction/README.md)
+      - Extracting face from uploaded image and from the contineous live video feed (web cam)
+
+  * ### Camera App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Camera%20App/README.md)
+      - Simple camera app using ```opencv```
+
+  * ### Face Analysis App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face_Analysis/README.md)
+      - Analyzing facial attributes through live video feed and from uploaded image and displaying the facial features on the screen.
+
+  * ### Login App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Login%20App/README.md)
+      - Simple Login Application using ```custom-tkinter``` and ```sqlite3```.
+
 
 ## Installation
 
@@ -33,3 +40,15 @@ To run the applications, you'll need to install the required dependencies. You c
    ```bash
    git clone https://github.com/jaymoundekar18/Python_Applications.git
    cd Python_Applications
+   
+2. Install the dependencies that are mentioned in ```requirements.txt```
+```python
+    pip install -r requirements.txt
+```
+
+
+### Contributing
+If you'd like to contribute to this repository, feel free to fork the repository, make changes, and create a pull request. Contributions are always welcome!
+
+### License
+This repository is open-source and available under the [MIT License](LICENSE).
