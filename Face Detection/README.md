@@ -66,3 +66,9 @@ python Face_Detection.py
 3. **Face Detection Not Working**:
    * Check if the facenet-pytorch library is installed properly.
    * Verify your camera feed is clear and well-lit for better detection accuracy.
+  
+## License
+This project is licensed under the MIT License. Feel free to use and modify it as needed
+
+
+### Happy Detecting **:)**
