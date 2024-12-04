@@ -1,4 +1,4 @@
-# Face Detection using Facenet Pytorch
+# Face Detection using Facenet Pytorch MTCNN
 
 This project is GUI based **Face Detection Application** using __Python__. It uses the facenet-pytorch library for face detection and customtkinter for creating the graphical user interface (GUI). The app displays a live camera feed and allows you to detect faces in real-time.
 
