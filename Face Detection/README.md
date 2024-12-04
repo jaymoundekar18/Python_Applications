@@ -53,7 +53,10 @@ python Face_Detection.py
 3. **GUI Design**:
    * **Labels**: Used to display the live camera feed and face detection messages.
    * **Buttons**: Control face detection and application behavior.
-  
+
+## Creating Executable Application of this Project using Pyinstaller
+**[Please refer to the Pyinstaller.md file](Pyinstaller.md)**
+
 ## Troubleshooting
 
 1. **No Camera Detected**:
