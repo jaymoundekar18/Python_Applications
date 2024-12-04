@@ -18,6 +18,9 @@ Install all dependencies listed in the requirements.txt file. Use the following 
 python -m pip install -r requirements.txt
 ```
 
+## Face Detection App UI 
+<img src="UI.png">
+
 ## Usage 
 1. **Run the Application**:
      * Execute the Python script in your terminal or IDE:
@@ -34,5 +37,32 @@ python Face_Detection.py
 4. **Close the App**:
     * Click the "Close App" button to stop the video stream and exit the application.
 
-## UI 
 
+## Code Overview
+### Key Components
+
+1. **Libraries Used**:
+    * **cv2**: For accessing the webcam and drawing bounding boxes on frames.
+    * **facenet_pytorch**: For face detection using the MTCNN model.
+    * **customtkinter**: For creating the GUI.
+    * **PIL (Pillow)**: For image manipulation and converting OpenCV frames for display.
+
+2. **Face Detection**:
+   * The app uses the **[MTCNN (Multi-Task Cascaded Convolutional Networks)](https://arxiv.org/pdf/1604.02878)** model for detecting faces in the live video feed.
+
+3. **GUI Design**:
+   * **Labels**: Used to display the live camera feed and face detection messages.
+   * **Buttons**: Control face detection and application behavior.
+  
+## Troubleshooting
+
+1. **No Camera Detected**:
+   * Ensure your webcam is connected and not in use by another application.
+   * Verify the cv2.VideoCapture(0) parameter. Change 0 to another index if you have multiple cameras.
+
+2. **Module Not Found**:
+   * Ensure all dependencies are installed correctly using ```python -m pip install -r requirements.txt```
+
+3. **Face Detection Not Working**:
+   * Check if the facenet-pytorch library is installed properly.
+   * Verify your camera feed is clear and well-lit for better detection accuracy.
