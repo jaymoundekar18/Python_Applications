@@ -5,7 +5,7 @@ Welcome to the my **Python Applications repository!** This repository contains v
 
 - [Overview](#overview)
 - [Applications](#applications)
-  - [Face Detection App](./FaceDetection/README.md)
+  - [Face Detection App](./Face%Detection/README.md)
   - [Other Applications](#other-applications)
 - [Installation](#installation)
 - [Usage](#usage)
