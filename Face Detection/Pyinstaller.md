@@ -11,8 +11,10 @@
 2. Run the following command: 
   ```bash
     pyinstaller --add-data "path to opencv":"cv2" --add-data "path to facenet_pytorch":"facenet_pytorch" --add-data "path to pillow":"PIL" Face_Detection.py
-  ```
-  Replace **path to** with the actual path to the module on your system.
+  ``` 
+  Replace **path to** with the actual path to the module on your system.<br>
+*or*<br>
+**Refer ``` pyinstaller.txt```** 
 
 3. The **Face_Detection.py** file will be converted into an executable. After the process completes:
    * The executable will be located in the dist folder of the project directory.
