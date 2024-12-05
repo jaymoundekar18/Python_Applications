@@ -17,3 +17,25 @@ Install all dependencies listed in the requirements.txt file. Use the following 
    ```python
       python -m pip install -r requirements.txt
    ```
+## Camera App UI 
+
+#### User Interface 
+<img src="cam_window.png"> 
+
+#### Capture Image and Save in the System
+<img src="save_img.png"> 
+
+## App Features
+
+   * The app will open the default system camera and display the live feed.
+   * Click the **Capture Image** button to take a snapshot of the current frame.
+   * Save the captured image to your preferred location by selecting a file format and path.
+   * Click **Close App** to exit the application.
+
+## Important Note:
+1. Ensure the system camera is functional and accessible.
+2. If the app cannot access the camera, an error dialog will appear, and the app will close.
+3. Saved images will retain the current frame's resolution and orientation.
+
+## License
+This project is licensed under the MIT License. Feel free to use and modify it as needed
