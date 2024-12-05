@@ -11,7 +11,7 @@ A Face Extraction App built using Python, leveraging MTCNN (Multi-task Cascaded 
  
 
 ## Installation
-### Prerequisits
+### Prerequisites
 Ensure you have Python installed (version **3.8** or later).
 
 ### Install Required Libraries
