@@ -31,6 +31,9 @@ Install all dependencies listed in the requirements.txt file. Use the following 
    * Click the **Capture Image** button to take a snapshot of the current frame.
    * Save the captured image to your preferred location by selecting a file format and path.
    * Click **Close App** to exit the application.
+     
+## Creating Executable Application of this Project using Pyinstaller
+**[Please refer to the Pyinstaller.md file](Pyinstaller.md)**
 
 ## Important Note:
 1. Ensure the system camera is functional and accessible.
