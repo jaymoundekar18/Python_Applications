@@ -16,19 +16,19 @@ This repository showcases a variety of Python applications, including face detec
 ## Applications
 
   * ### Face Detection App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face%20Detection/README.md)
-      - This application uses OpenCV and `facenet_pytorch` to perform real-time face detection through a webcam. It can identify faces in live video feed and display whether a face is detected or not.
+      - This application uses `OpenCV` and `facenet_pytorch` to perform real-time face detection through a webcam. It can identify faces in live video feed and display whether a face is detected or not.
 
   * ### Face Extraction App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face%20Extraction/README.md)
-      - Extracting face from uploaded image and from the contineous live video feed (web cam)
+      - This application uses `OpenCV` and `facenet_pytorch` leveraging [MTCNN](https://arxiv.org/pdf/1604.02878) to perform face detection on selected image and extract them into smaller cropped faces displayed on the interface.
 
   * ### Camera App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Camera%20App/README.md)
-      - Simple camera app using ```opencv```
+      - A Camera App built using `Python` and `CustomTkinter`, providing a live camera feed and the ability to capture and save images directly from the video stream.
 
   * ### Face Analysis App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face_Analysis/README.md)
-      - Analyzing facial attributes through live video feed and from uploaded image and displaying the facial features on the screen.
+      - A Face Analysis Application developed using `Python`, `CustomTkinter`, and `DeepFace` to analyze facial features such as **emotion**, **age**, **gender**, **race**, and **face confidence**. The app supports both live camera feed and static image analysis.
 
   * ### Login App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Login%20App/README.md)
-      - Simple Login Application using ```custom-tkinter``` and ```sqlite3```.
+      - This project is a desktop application built using `CustomTkinter`, `SQLite`, `OpenCV`, and `Pillow` for user login and registration. It features a sleek and modern UI with the following functionalities: **User Registration**, **User Login**, **Password Visibility Toggle**, **Dynamic Screen Transition**.
 
 
 ## Installation
