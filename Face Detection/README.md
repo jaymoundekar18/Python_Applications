@@ -9,7 +9,7 @@ This project is GUI based **Face Detection Application** using __Python__. It us
 4. **User-Friendly GUI**: Simple and dark-themed interface built with customtkinter.
 
 ## Installation
-### Prerequisits
+### Prerequisites
 Ensure you have Python installed (version **3.8** or later).
 
 ### Install Required Libraries
