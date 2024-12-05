@@ -6,7 +6,7 @@ from tkinter import filedialog, messagebox
 
 # App theme
 ct.set_appearance_mode("dark")
-ct.set_default_color_theme("blue")
+ct.set_default_color_theme("green")
 
 # App Initialization
 class App(ct.CTk):
@@ -14,7 +14,12 @@ class App(ct.CTk):
         super().__init__()
 
         self.title("Camera")
-        self.geometry("700x700")
+        
+        self.screen_width = self.winfo_screenwidth()
+        self.screen_height = self.winfo_screenheight()
+
+        # Set the window to full screen resolution
+        self.geometry(f"{self.screen_width}x{self.screen_height}")
 
         # Initialize video capture
         self.video_stream = cv2.VideoCapture(0)
@@ -50,6 +55,8 @@ class App(ct.CTk):
         ret, frame = self.video_stream.read()
 
         if ret:
+            frame = cv2.resize(frame, None, fx=2.0, fy=2.0, interpolation=cv2.INTER_LINEAR)
+            
             frame_rgb = cv2.cvtColor(cv2.flip(frame, 1), cv2.COLOR_BGR2RGB)
 
             self.main_image = frame_rgb  # Save the latest frame for capturing
