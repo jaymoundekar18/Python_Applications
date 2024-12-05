@@ -8,7 +8,7 @@ A Face Extraction App built using Python, leveraging MTCNN (Multi-task Cascaded 
 3. **Face Extraction**: Displays all detected faces as separate, cropped thumbnails.
 4. **Responsive Interface**: Built with CustomTkinter for a modern, scrollable, and user-friendly GUI.
 5. **Dynamic Grid Layout**: Cropped faces are displayed dynamically in a grid layout.
-6. 
+ 
 
 ## Installation
 ### Prerequisits
