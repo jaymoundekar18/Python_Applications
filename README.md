@@ -15,14 +15,14 @@ This repository showcases a variety of Python applications, including face detec
 
 ## Applications
 
+  * ### Camera App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Camera%20App/README.md)
+      - A Camera App built using `Python` and `CustomTkinter`, providing a live camera feed and the ability to capture and save images directly from the video stream.
+
   * ### Face Detection App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face%20Detection/README.md)
       - This application uses `OpenCV` and `facenet_pytorch` to perform real-time face detection through a webcam. It can identify faces in live video feed and display whether a face is detected or not.
 
   * ### Face Extraction App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face%20Extraction/README.md)
       - This application uses `OpenCV` and `facenet_pytorch` leveraging [MTCNN](https://arxiv.org/pdf/1604.02878) to perform face detection on selected image and extract them into smaller cropped faces displayed on the interface.
-
-  * ### Camera App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Camera%20App/README.md)
-      - A Camera App built using `Python` and `CustomTkinter`, providing a live camera feed and the ability to capture and save images directly from the video stream.
 
   * ### Face Analysis App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face_Analysis/README.md)
       - A Face Analysis Application developed using `Python`, `CustomTkinter`, and `DeepFace` to analyze facial features such as **emotion**, **age**, **gender**, **race**, and **face confidence**. The app supports both live camera feed and static image analysis.
