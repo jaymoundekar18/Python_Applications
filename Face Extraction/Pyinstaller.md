@@ -10,7 +10,7 @@
 1. Open the Command Prompt or terminal and navigate to the directory where your Python script is located.
 2. Run the following command: 
   ```bash
-    pyinstaller --add-data "path to opencv":"cv2" --add-data "path to facenet_pytorch":"facenet_pytorch" --add-data "path to pillow":"PIL" Face_Detection.py
+    pyinstaller --add-data "path to opencv":"cv2" --add-data "path to facenet_pytorch":"facenet_pytorch" --add-data "path to pillow":"PIL" Face_Extraction.py
   ``` 
   Replace **path to** with the actual path to the module on your system.<br>
 *or*<br>
