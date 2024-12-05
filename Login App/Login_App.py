@@ -88,7 +88,7 @@ class App(ct.CTk,dbConnect):
         self.frontimglabel = ct.CTkLabel(self.frontimgframe,text="")
         self.frontimglabel.pack(padx=20, pady=10)
 
-        image1 = cv2.imread("login.png")
+        image1 = cv2.imread("main_img.png")
         imgh, imgw = image1.shape[:2]
         newimgw = int(imgw * 0.7)
         newimgh = int(imgh * 0.7)
