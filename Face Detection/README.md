@@ -14,9 +14,9 @@ Ensure you have Python installed (version **3.8** or later).
 
 ### Install Required Libraries
 Install all dependencies listed in the requirements.txt file. Use the following command:
-    ```python
-        python -m pip install -r requirements.txt
-    ```
+   ```python
+      python -m pip install -r requirements.txt
+   ```
 
 ## Face Detection App UI 
 <img src="UI.png">
