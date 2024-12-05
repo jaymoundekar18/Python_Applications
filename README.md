@@ -25,7 +25,7 @@ This repository showcases a variety of Python applications, including face detec
       - This application uses `OpenCV` and `facenet_pytorch` leveraging [MTCNN](https://arxiv.org/pdf/1604.02878) to perform face detection on selected image and extract them into smaller cropped faces displayed on the interface.
 
   * ### Face Analysis App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Face_Analysis/README.md)
-      - A Face Analysis Application developed using `Python`, `CustomTkinter`, and `DeepFace` to analyze facial features such as **emotion**, **age**, **gender**, **race**, and **face confidence**. The app supports both live camera feed and static image analysis.
+      - A Face Analysis Application developed using `Python`, `CustomTkinter`, and [DeepFace](https://github.com/serengil/deepface) to analyze facial features such as **emotion**, **age**, **gender**, **race**, and **face confidence**. The app supports both live camera feed and static image analysis.
 
   * ### Login App [➡️](https://github.com/jaymoundekar18/Python_Applications/blob/main/Login%20App/README.md)
       - This project is a desktop application built using `CustomTkinter`, `SQLite`, `OpenCV`, and `Pillow` for user login and registration. It features a sleek and modern UI with the following functionalities: **User Registration**, **User Login**, **Password Visibility Toggle**, **Dynamic Screen Transition**.
