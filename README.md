@@ -42,9 +42,9 @@ To run the applications, you'll need to install the required dependencies. You c
    cd Python_Applications
    
 2. Install the dependencies that are mentioned in ```requirements.txt```
-```python
-    pip install -r requirements.txt
-```
+   ```python
+      pip install -r requirements.txt
+   ```
 
 
 ### Contributing
