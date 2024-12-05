@@ -21,8 +21,11 @@ python -m pip install -r requirements.txt
 ```
 
 ## Face Extraction App UI 
-#### User Interface | Extracted Face from uploaded image
-<img src="ui.png"> | <img src="extracted.png">
+#### User Interface 
+<img src="ui.png"> 
+
+#### Extracted Face from uploaded image
+<img src="extracted.png">
 
 ## Usage 
 1. **Run the Application**:
