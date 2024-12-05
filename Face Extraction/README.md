@@ -16,9 +16,9 @@ Ensure you have Python installed (version **3.8** or later).
 
 ### Install Required Libraries
 Install all dependencies listed in the requirements.txt file. Use the following command:
-```python
-python -m pip install -r requirements.txt
-```
+   ```python
+      python -m pip install -r requirements.txt
+   ```
 
 ## Face Extraction App UI 
 #### User Interface 
@@ -30,9 +30,9 @@ python -m pip install -r requirements.txt
 ## Usage 
 1. **Run the Application**:
      * Execute the Python script in your terminal or IDE:
-```python
-python Face_Extraction.py
-```
+     ```python
+        python Face_Extraction.py
+     ```
 2. **Select Image**:
     * Click the "Select Image" button to to upload image from the system.
     * Selected image will be displayed on the screen.
