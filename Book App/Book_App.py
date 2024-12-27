@@ -41,6 +41,10 @@ class App(ct.CTk):
                                   text_color="white", font=("arial black", 32))
     self.apptitlelabel.pack()  
 
+    self.current_book_name=None
+    self.current_user_name=None
+    self.current_table=None
+    
     # ------------------------------------------------UI Configuration---------------------------------------------------------
     
     # Front image frame (on the left side)
@@ -289,6 +293,17 @@ class App(ct.CTk):
 
     self.oldbook = ct.CTkButton(self.dashboardframe,text="Add Old Book",width=250,height=60,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.addoldbook)
     self.oldbook.grid(row=8,column=3, columnspan=2,padx=20, pady=20)
+
+  def logout(self):
+    self.apptitlelabel.configure(text="Book Data")
+    self.dashboardframe.grid_forget()
+
+    self.frontimgframe.grid_configure(row=1, column=0, pady=20, padx=20, sticky="nsew")
+    self.frontlogframe.grid_configure(row=1, column=1, pady=20, padx=20, sticky="nsew")
+
+    self.current_book_name=None
+    self.current_user_name=None
+    self.current_table=None
 
 
 # -----------------------------------------------------Main function to run the app-----------------------------------------------------
