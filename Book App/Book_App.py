@@ -244,8 +244,51 @@ class App(ct.CTk):
 # ------------------------------------------------------------------------------------------------------------------------------
  
   def changeScreen(self):
-    print("Successfully Login")
+    print("Login Successfully")
 
+    self.apptitlelabel.configure(text="Dashboard")
+
+    self.frontimgframe.grid_forget()
+    self.frontlogframe.grid_forget()
+    self.frontentrylabel1.delete(0, ct.END)
+    self.frontentrylabel2.delete(0, ct.END)
+    
+    
+    self.dashboardframe = ct.CTkFrame(self.main_frame, width=1200, height=700, fg_color="transparent")
+    self.dashboardframe.grid(row=2, column=0, pady=20, padx=20, sticky="nsew")
+    
+    self.emptyframe1 = ct.CTkFrame(self.dashboardframe, width=1250, height=50, fg_color="transparent")
+    self.emptyframe1.grid(row=0, column=0, columnspan=9, pady=20, padx=20, sticky="nsew")
+
+    img = Image.open("img/logout.png")
+    self.loutbtnimg = ctk_image = ct.CTkImage(light_image=img, dark_image=img, size=(120, 30))  
+
+    self.logout_button = ct.CTkButton(self.dashboardframe,text="", hover_color="#3d3d3d",image=self.loutbtnimg,corner_radius=1000,bg_color="transparent",fg_color="transparent", width=120, height=30 ,compound="left", command=self.logout)
+    self.logout_button.grid(row=0, column=10, padx=20, pady=20, sticky="ne")
+    
+    self.dashUser = ct.CTkLabel(self.dashboardframe,text=f"Hello {self.current_user_name}!",width=250,height=60,text_color="white",bg_color="transparent",font=("Verdana", 20,"bold"))
+    self.dashUser.grid(row=0,column=0,padx=20, pady=20)
+    
+    self.newbook = ct.CTkButton(self.dashboardframe,text="Read New Book",width=250,height=60,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.readbook)
+    self.newbook.grid(row=4,column=3,padx=20, pady=20)
+
+    self.existingbook = ct.CTkButton(self.dashboardframe,text="Read Existing Book",width=250,height=60,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.read_existingBook)
+    self.existingbook.grid(row=4,column=4,padx=20, pady=20)
+
+    self.emptyframe2 = ct.CTkFrame(self.dashboardframe, width=1250, height=50, fg_color="transparent")
+    self.emptyframe2.grid(row=5, column=0, columnspan=9, pady=20, padx=20, sticky="nsew")
+
+    self.booklist = ct.CTkButton(self.dashboardframe,text="My Book List",width=250,height=60,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.show_book_list)
+    self.booklist.grid(row=6,column=3,padx=20, pady=20)
+
+    self.showanalysis = ct.CTkButton(self.dashboardframe,text="Show Analysis",width=250,height=60,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"))
+    self.showanalysis.grid(row=6,column=4,padx=20, pady=20)
+    
+    self.emptyframe3 = ct.CTkFrame(self.dashboardframe, width=1250, height=50, fg_color="transparent")
+    self.emptyframe3.grid(row=7, column=0, columnspan=9, pady=20, padx=20, sticky="nsew")
+
+    self.oldbook = ct.CTkButton(self.dashboardframe,text="Add Old Book",width=250,height=60,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.addoldbook)
+    self.oldbook.grid(row=8,column=3, columnspan=2,padx=20, pady=20)
 
 
 # -----------------------------------------------------Main function to run the app-----------------------------------------------------
