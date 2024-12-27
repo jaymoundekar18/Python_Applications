@@ -305,6 +305,22 @@ class App(ct.CTk):
     self.current_user_name=None
     self.current_table=None
 
+  def readbook(self):
+    pass
+    
+  def read_existingBook(self):
+    pass
+    
+  def show_book_list(pass):
+    pass
+    
+  def show_book_analysis(self):
+    pass
+    
+  def addoldbook(self):
+    pass
+
+
 
 # -----------------------------------------------------Main function to run the app-----------------------------------------------------
 
