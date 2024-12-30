@@ -1,0 +1,4 @@
+tkinter
+custom-tkinter
+pyinstaller==6.9.0
+deep_translator==1.11.4
