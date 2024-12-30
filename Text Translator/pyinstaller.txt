@@ -1,0 +1,1 @@
+cmd:> pyinstaller --add-data "Python\Lib\site-packages\deep_translator":"deep_translator" Text_Translator.py
