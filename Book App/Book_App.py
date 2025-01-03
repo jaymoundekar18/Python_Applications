@@ -362,7 +362,16 @@ class App(ct.CTk):
 # -----------------------------------------------------    
   def addoldbook(self):
     pass
+    
+# -----------------------------------------------------    
 
+  def backtodashboard1(self):
+    self.apptitlelabel.configure(text="Dashboard")
+    self.current_book_name=None
+    self.gifimgframe.grid_forget()
+    self.bookdetailsframe.grid_forget()
+    self.bookreadframe.grid_forget()
+    self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
 
 
 # -----------------------------------------------------Main function to run the app-----------------------------------------------------
