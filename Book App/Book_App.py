@@ -382,7 +382,53 @@ class App(ct.CTk):
                 'Travel Literature', 'True Crime', 'Western Fiction', "Women's Fiction", 'Young Adult Literature'
                 ]
 
-        
+    self.bookgenentrylabel = ct.CTkOptionMenu(self.bookdetailsframe,values=book_genres,width=350,height=50,bg_color="transparent", fg_color="#ebb434",font=("arial", 16),text_color="white")
+    self.bookgenentrylabel.grid(row=3,column=3,padx=20, pady=20)
+   
+    self.bookpgtextlabel = ct.CTkLabel(self.bookdetailsframe,text="Number of Book Pages    : ", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.bookpgtextlabel.grid(row=4,column=2,padx=20, pady=20, sticky="w")
+
+    self.bookpgentrylabel = ct.CTkEntry(self.bookdetailsframe,placeholder_text="eg. 465 (Note: Numbers only)",justify="center",width=350,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+    self.bookpgentrylabel.grid(row=4,column=3,padx=20, pady=20)
+
+    self.bookSub_button = ct.CTkButton(self.bookdetailsframe,text="", hover_color="#3d3d3d",image=self.subbtnimg,corner_radius=1000,bg_color="transparent",fg_color="transparent", width=180, height=40 ,compound="left", command=self.valBookData)
+    self.bookSub_button.grid(row=6,column=3,padx=20, pady=40)
+    
+
+    # Book Reading configuration on right side
+    self.is_running = False
+    self.is_existingBook = False
+    self.is_newBook = True
+
+    self.booktitleframe = ct.CTkFrame(self.bookreadframe, width=600, height=100, fg_color="transparent")
+    self.booktitleframe.grid(row=0, column=0, columnspan=6, pady=20, padx=20, sticky="nsew")
+
+    self.booktitle = ct.CTkLabel(self.booktitleframe, text="", fg_color="transparent",justify="center",
+                                  text_color="white", font=("arial black", 32))
+    self.booktitle.grid(row=0,column=3,padx=20, pady=20,sticky="nsew") 
+
+    self.booktimerlabel = ct.CTkLabel(self.bookreadframe, text="00:00:00", fg_color="transparent",
+                                  text_color="white", font=("Verdana ", 32,"bold"))
+    self.booktimerlabel.grid(row=2,column=3,padx=20, pady=20) 
+
+    image = Image.open("img/sandclock.gif")
+
+    self.sandclockimg = ct.CTkImage(light_image=image, size=(100,100))
+    
+
+    self.clockimglabel = ct.CTkLabel(self.bookreadframe, text="", image=self.sandclockimg , fg_color="transparent")
+    self.clockimglabel.grid(row=3,column=3,padx=20, pady=20)
+
+    self.bookstartbtn = ct.CTkButton(self.bookreadframe,text="Start Timer",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.start)
+    self.bookstartbtn.grid(row=4,column=2,padx=20, pady=20)
+
+    self.bookpausebtn = ct.CTkButton(self.bookreadframe,text="Pause",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"),state="disabled", command=self.pausetimer)
+    self.bookpausebtn.grid(row=4,column=3,padx=20, pady=20)
+
+    self.bookstopbtn = ct.CTkButton(self.bookreadframe,text="Stop",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"),state="disabled", command=self.stoptimer)
+    self.bookstopbtn.grid(row=4,column=4,padx=20, pady=20)
+
 
   
 # -----------------------------------------------------    
