@@ -293,7 +293,8 @@ class App(ct.CTk):
 
     self.oldbook = ct.CTkButton(self.dashboardframe,text="Add Old Book",width=250,height=60,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.addoldbook)
     self.oldbook.grid(row=8,column=3, columnspan=2,padx=20, pady=20)
-
+    
+# -----------------------------------------------------
   def logout(self):
     self.apptitlelabel.configure(text="Book Data")
     self.dashboardframe.grid_forget()
@@ -304,19 +305,61 @@ class App(ct.CTk):
     self.current_book_name=None
     self.current_user_name=None
     self.current_table=None
-
+# -----------------------------------------------------
   def readbook(self):
-    pass
+    self.apptitlelabel.configure(text="Read New Book")
+
+    self.dashboardframe.grid_forget()
+
+    # Image and GIF Frame (on the left side)
+    self.gifimgframe = ct.CTkFrame(self.main_frame, width=1200 // 2, height=700, fg_color="transparent")
+    self.gifimgframe.grid(row=2, column=0, pady=20, padx=20, sticky="nsew")  
+
+    # Book Details Frame (on the right side)
+    self.bookdetailsframe = ct.CTkFrame(self.main_frame, width=1200 // 2, height=700, fg_color="transparent")
+    self.bookdetailsframe.grid(row=2, column=1, pady=20, padx=20, sticky="nsew")
+
+    # Book Reading Frame (on the right side)
+    self.bookreadframe = ct.CTkFrame(self.main_frame, width=1200 // 2, height=700, fg_color="transparent")
     
+    self.main_frame.grid_columnconfigure(0, weight=1)
+    self.main_frame.grid_columnconfigure(1, weight=1)
+    self.main_frame.grid_rowconfigure(1, weight=1)
+
+
+    # GIF Image configuration on left side
+
+    image = Image.open("img/home.png")
+
+    ctk_image = ct.CTkImage(light_image=image, size=(120,35))
+
+    self.backtodash = ct.CTkButton(self.gifimgframe,text="", hover_color="#3d3d3d",image=ctk_image,corner_radius=1000,bg_color="transparent",fg_color="transparent", width=150, height=40 ,compound="left", command=self.backtodashboard1)
+    self.backtodash.pack(padx=20, pady=10, anchor="nw")
+    
+
+    self.gifimglabel = ct.CTkLabel(self.gifimgframe,text="")
+    self.gifimglabel.pack(padx=20, pady=90)
+
+    image = Image.open("img/read0.png")
+
+    ctk_image = ct.CTkImage(light_image=image, size=(600,400))
+    
+    self.gifimglabel.configure(image=ctk_image)
+    self.gifimglabel.image = ctk_image
+
+
+
+  
+# -----------------------------------------------------    
   def read_existingBook(self):
     pass
-    
+# -----------------------------------------------------    
   def show_book_list(pass):
     pass
-    
+# -----------------------------------------------------    
   def show_book_analysis(self):
     pass
-    
+# -----------------------------------------------------    
   def addoldbook(self):
     pass
 
