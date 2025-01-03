@@ -347,7 +347,42 @@ class App(ct.CTk):
     self.gifimglabel.configure(image=ctk_image)
     self.gifimglabel.image = ctk_image
 
+    # Book Details configuration on right side
+    self.bdetailslabel = ct.CTkLabel(self.bookdetailsframe, text="Book Details", fg_color="transparent",
+                                  text_color="white", font=("arial black", 32))
+    self.bdetailslabel.grid(row=0,column=3,padx=20, pady=20)
 
+    self.booktitletextlabel = ct.CTkLabel(self.bookdetailsframe,text="Book Title   : ", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.booktitletextlabel.grid(row=1,column=2,padx=20, pady=20, sticky="w")
+
+    self.booktitleentrylabel = ct.CTkEntry(self.bookdetailsframe,placeholder_text="Enter Your Book Title",justify="center",width=350,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+    self.booktitleentrylabel.grid(row=1,column=3,padx=20, pady=20)
+
+    self.bauthortextlabel = ct.CTkLabel(self.bookdetailsframe,text="Author Name   : ", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.bauthortextlabel.grid(row=2,column=2,padx=20, pady=20, sticky="w")
+
+    self.bauthorentrylabel = ct.CTkEntry(self.bookdetailsframe,placeholder_text="Enter Book Author Name",justify="center",width=350,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+    self.bauthorentrylabel.grid(row=2,column=3,padx=20, pady=20)
+
+    self.bookgentextlabel = ct.CTkLabel(self.bookdetailsframe,text="Book Genre   : ", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.bookgentextlabel.grid(row=3,column=2,padx=20, pady=20, sticky="w")
+
+    book_genres = [
+                'Action Fiction', 'Adventure Fiction', 'Alternate History', 'Autobiography', 'Biography', 
+                'Contemporary Literature', 'Contemporary Romance', 'Crime Fiction', 'Detective Fiction', 'Essay',
+                'Fairy Tale', 'Fantasy', 'Fantasy Fiction', 'Fiction', 'Genre Fiction', 'Graphic Novel', 
+                'Historical Fantasy', 'Historical Fiction', 'Historical Romance', 'History',
+                'Horror Fiction', 'Humor', 'Literary Fiction', 'Magical Realism', 'Memoir', 'Mystery', 'Narrative', 
+                'New Adult Fiction', 'Non-fiction', 'Novel', 'Paranormal Romance', 'Philosophy', 'Poetry', 'Quotation', 
+                'Romance', 'Romance Novel', 'Satire', 'Science', 'Science Fantasy', 'Science Fiction',
+                'Self-help Book', 'Short Story', 'Social Science', 'Speculative Fiction', 'Spirituality', 'Thriller', 
+                'Travel Literature', 'True Crime', 'Western Fiction', "Women's Fiction", 'Young Adult Literature'
+                ]
+
+        
 
   
 # -----------------------------------------------------    
