@@ -25,7 +25,7 @@ class DB_Connect():
 
 ## Book recored table for user
     table_name = fname.strip().replace(" ","").lower()
-    query = "CREATE TABLE IF NOT EXISTS " + table_name + " (book_name TEXT NOT NULL, book_author TEXT NOT NULL, genre TEXT NOT NULL, reading_time TEXT, book_pages INTEGER NOT NULL, book_review TEXT, rating REAL)"
+    query = "CREATE TABLE IF NOT EXISTS " + table_name + " (book_name TEXT NOT NULL, book_author TEXT NOT NULL, genre TEXT NOT NULL, reading_time TEXT, book_pages INTEGER NOT NULL, book_review TEXT, rating REAL, book_status TEXT, start_date TEXT, end_date TEXT)"
     
     self.cursor.execute(query)
 
@@ -86,10 +86,10 @@ class DB_Connect():
 
 
 ## Update Book Time
-  def update_book_time(self,tablename, bookname, newtime):
-    query = "UPDATE " + tablename + " SET reading_time = ? WHERE book_name = ?"
+  def update_book_time(self,tablename, bookname, newtime, status):
+    query = "UPDATE " + tablename + " SET reading_time = ?, book_status = ? WHERE book_name = ?"
     try : 
-      self.cursor.execute(query, (newtime,bookname ))
+      self.cursor.execute(query, (newtime, status, bookname ))
       self.conn.commit()
       print("DB : time updated")
 
@@ -101,7 +101,32 @@ class DB_Connect():
     except Exception as e:
       print(e)
 
+  ## Update Book Time Rating Review
+  def update_book_trr(self,tablename, bookname, newtime, rating, review, status):
+    query = "UPDATE " + tablename + " SET reading_time = ?, book_review = ?, rating = ?, book_status = ? WHERE book_name = ?"
+    try : 
+      self.cursor.execute(query, (newtime,review, rating, status, bookname ))
+      self.conn.commit()
+      print("DB : time updated")
 
+      query = "SELECT * FROM " + tablename
+      self.cursor.execute(query)
+      res = self.cursor.fetchall()
+      print(res)
+    
+    except Exception as e:
+      print(e)
+
+  ## Show All Book Data
+  def show_all_data(self,tablename):
+
+    try :
+      query = "SELECT * FROM " + tablename
+      return pd.read_sql(query, self.conn)
+      
+    except Exception as e:
+      print(e)
+  
 ## Delete Table From Database
   def delete_table(self, tablename):
     query = "DROP TABLE IF EXISTS " + tablename.strip().replace(" ","").lower()
