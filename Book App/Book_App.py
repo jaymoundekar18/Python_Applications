@@ -430,6 +430,374 @@ class App(ct.CTk):
     self.bookstopbtn.grid(row=4,column=4,padx=20, pady=20)
 
 
+# -----------------------------------------------------   
+  
+  def valBookData(self):
+    if self.booktitleentrylabel.get()== '' or self.bauthorentrylabel.get() == '' or self.bookgenentrylabel.get()== '' or self.bookpgentrylabel.get()== '' :
+      messagebox.showwarning("Input Error","All fields are required.")
+        
+    else:
+      
+      try:
+        start_date = datetime.now().strftime("%d/%m/%Y")
+        print("new book: "+self.current_table ,self.booktitleentrylabel.get(),self.bauthorentrylabel.get(),self.bookgenentrylabel.get() ,self.bookpgentrylabel.get(),"00:00:00",type(start_date))
+        
+        ab.save_new_book(self.current_table ,self.booktitleentrylabel.get(),self.bauthorentrylabel.get(),self.bookgenentrylabel.get() ,self.bookpgentrylabel.get(),"00:00:00",start_date)
+        
+        self.current_book_name = self.booktitleentrylabel.get().title()
+        title = "Reading : " + self.current_book_name
+        messagebox.showinfo("Successfull","Book Saved Successfully!")
+
+        self.booktitleentrylabel.delete(0, ct.END)
+        self.bauthorentrylabel.delete(0, ct.END)
+        # self.bookgenentrylabel.delete(0, ct.END)
+        self.bookpgentrylabel.delete(0, ct.END)
+
+        
+        self.newBook(title)
+                    
+
+      except Exception as e:
+        print(e)
+
+
+# -----------------------------------------------------   
+  
+    def newBook(self,title):
+      self.bookdetailsframe.grid_forget()
+      self.bookreadframe.grid(row=2, column=1, pady=20, padx=20, sticky="nsew")
+      self.booktitle.configure(text=title)
+      print("Book Saved")
+
+# -----------------------------------------------------   
+  
+    def startread(self):
+      self.gif_path_1 = "img/sandclock.gif" 
+      self.gif_1 = Image.open(self.gif_path_1)
+      self.current_frame_1 = 0
+      self.frames_1 = self.load_gif_1(self.gif_1)
+
+      self.gif_paths = ["img/read1.gif", "img/read2.gif"]
+
+      self.frames_2 = []
+      self.current_gif_index = 0  
+      self.load_all_gifs()  
+      self.current_frame_2 = 0
+      self.is_paused = False
+      self.elapsed_time = 0
+
+# -----------------------------------------------------   
+  
+    def start(self):
+      pygame.mixer.music.load(r"C:\Users\jaymo\Downloads\music.mp3")  
+      pygame.mixer.music.play(-1)
+      if self.is_newBook:
+        self.startread()
+        self.bookstartbtn.configure(state="disabled")
+        self.bookpausebtn.configure(state="normal")
+        self.bookstopbtn.configure(state="normal")
+        self.is_running=True
+        self.update_time()
+        self.animate_gif_1()   
+        self.animate_gif_2()   
+
+      elif self.is_existingBook:
+        self.startread()
+        self.bookstartbtn1.configure(state="disabled")
+        self.bookpausebtn1.configure(state="normal")
+        self.bookstopbtn1.configure(state="normal")
+        self.is_running=True
+        self.update_time()
+        self.animate_gif_1()   
+        self.animate_gif_2()   
+        
+      else:
+        pass
+
+# -----------------------------------------------------   
+  
+    def load_gif_1(self, gif):
+      frames = []
+      try:
+        while True:
+          frame = gif.copy()
+          frame = frame.resize((150, 150), Image.LANCZOS)
+          frames.append(ImageTk.PhotoImage(frame))
+          gif.seek(len(frames))  
+      except EOFError:
+        pass  
+        
+      return frames 
+
+# -----------------------------------------------------   
+  
+    def load_gif_2(self, gif):
+      frames = []
+      try:
+        while True:
+          frame = gif.copy()
+          frame = frame.resize((800, 550), Image.LANCZOS)
+          frames.append(ImageTk.PhotoImage(frame))
+          gif.seek(len(frames))  
+      
+      except EOFError:
+        pass  
+        
+      return frames
+
+# -----------------------------------------------------   
+  
+    def load_all_gifs(self):
+      for path in self.gif_paths:
+        gif = Image.open(path)
+        frames = self.load_gif_2(gif)
+        self.frames_2.append(frames)
+
+# -----------------------------------------------------   
+      
+    def animate_gif_1(self):
+      if self.is_newBook:
+        if self.frames_1 and self.is_running and not self.is_paused:
+          self.clockimglabel.configure(image=self.frames_1[self.current_frame_1])
+          self.current_frame_1 = (self.current_frame_1 + 1) % len(self.frames_1)
+          self.after(100, self.animate_gif_1)  # Set delay to 1000 milliseconds (1 second)
+
+      elif self.is_existingBook:
+        if self.frames_1 and self.is_running and not self.is_paused:
+          self.clockimglabel1.configure(image=self.frames_1[self.current_frame_1])
+          self.current_frame_1 = (self.current_frame_1 + 1) % len(self.frames_1)
+          self.after(100, self.animate_gif_1)  # Set delay to 1000 milliseconds (1 second)
+
+      else:
+        pass
+
+
+# -----------------------------------------------------   
+  
+    def animate_gif_2(self):
+      if self.is_newBook:
+        
+        if self.frames_2 and self.is_running and not self.is_paused:
+          current_frames = self.frames_2[self.current_gif_index]
+          self.gifimglabel.configure(image=current_frames[self.current_frame_2])
+          self.current_frame_2 = (self.current_frame_2 + 1) % len(current_frames)
+
+                
+          if self.current_frame_2 == 0:
+            self.current_gif_index = (self.current_gif_index + 1) % len(self.frames_2)  
+
+          self.after(30, self.animate_gif_2) 
+
+      elif self.is_existingBook:
+        
+        if self.frames_2 and self.is_running and not self.is_paused:
+          
+          current_frames = self.frames_2[self.current_gif_index]
+          self.gifimglabel1.configure(image=current_frames[self.current_frame_2])
+          self.current_frame_2 = (self.current_frame_2 + 1) % len(current_frames)
+
+            
+          if self.current_frame_2 == 0:  
+            self.current_gif_index = (self.current_gif_index + 1) % len(self.frames_2)  
+
+          self.after(30, self.animate_gif_2) 
+
+        else:
+            pass        
+
+
+# -----------------------------------------------------   
+  
+    def update_time(self):
+        if self.is_newBook:
+          
+          if self.is_running and not self.is_paused:
+            self.elapsed_time += 1
+            current_time = time.strftime("%H:%M:%S", time.gmtime(self.elapsed_time))
+            self.booktimerlabel.configure(text=current_time)
+            self.after(1000, self.update_time)
+
+        elif self.is_existingBook:
+          if self.is_running and not self.is_paused:
+            self.existingTime += 1        
+            current_time = time.strftime("%H:%M:%S", time.gmtime(self.existingTime))
+            self.booktimerlabel1.configure(text=current_time)
+            self.after(1000, self.update_time)
+        
+        else:
+            pass
+
+# -----------------------------------------------------   
+  
+    def pausetimer(self):
+      if self.is_newBook:
+        if self.is_running:
+          self.is_paused = not self.is_paused  # Toggle pause state
+          if self.is_paused:
+            pygame.mixer.music.pause()
+            self.bookpausebtn.configure(text="Continue")  # Change button text to Continue
+                
+          else:
+            pygame.mixer.music.unpause()
+            self.bookpausebtn.configure(text="Pause")  # Change button text to Pause
+            self.update_time()
+            self.animate_gif_1()
+            self.animate_gif_2()
+
+      elif self.is_existingBook:
+        if self.is_running: 
+          self.is_paused = not self.is_paused  # Toggle pause state
+          if self.is_paused:
+            pygame.mixer.music.pause()
+            self.bookpausebtn1.configure(text="Continue")  # Change button text to Continue
+          else:
+            pygame.mixer.music.unpause()
+            self.bookpausebtn1.configure(text="Pause")  # Change button text to Pause
+            self.update_time()
+            self.animate_gif_1()
+            self.animate_gif_2()
+        
+      else:
+        pass
+
+# -----------------------------------------------------   
+  
+    def stoptimer(self):
+
+      pygame.mixer.music.stop()
+      self.pausetimer()
+
+      result = messagebox.askyesno("Stop Timer", "Are you sure you want to stop the timer?")
+        
+      if self.is_newBook:
+        bookstatus = messagebox.askyesno("Book Status",f"Is {self.current_book_name} book completed ? ")
+
+        if result and bookstatus:
+          self.bookstartbtn.configure(state="disabled")
+          self.bookpausebtn.configure(state="disabled")
+          self.bookstopbtn.configure(state="disabled")
+          self.is_running = False 
+          self.is_completed = True 
+
+          self.ratingLabel = ct.CTkLabel(self.bookreadframe,text=f"Rate {self.current_book_name} :", fg_color="transparent",
+                                      text_color="white", font=("Palatino Linotype", 20))
+          self.ratingLabel.grid(row=5,column=2,padx=20, pady=20)
+
+          self.ratingEntry = ct.CTkEntry(self.bookreadframe, placeholder_text="eg. 3.5, 4.0, 5  ",justify="center",width=180,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+          self.ratingEntry.grid(row=5,column=3,padx=20, pady=20)
+
+          self.reviewLabel = ct.CTkLabel(self.bookreadframe,text=f"Write book review :", fg_color="transparent",
+                                text_color="white", font=("Palatino Linotype", 20))
+          self.reviewLabel.grid(row=6,column=2,padx=20, pady=20)
+
+          self.reviewEntry = ct.CTkTextbox(self.bookreadframe, width=600,height=400,bg_color="#3d3d3d",fg_color="transparent",font=("Palatino Linotype", 16))
+          self.reviewEntry.grid(row=7,column=2, columnspan=3,padx=20, pady=20)
+          
+          self.timesavebtn = ct.CTkButton(self.bookreadframe,text="Save Time",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.update_dbtime)
+          self.timesavebtn.grid(row=8,column=3,padx=20, pady=20)
+
+        elif result:  
+          self.bookstartbtn.configure(state="disabled")
+          self.bookpausebtn.configure(state="disabled")
+          self.bookstopbtn.configure(state="disabled")
+          self.is_running = False
+
+          self.timesavebtn = ct.CTkButton(self.bookreadframe,text="Save Time",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.update_dbtime)
+          self.timesavebtn.grid(row=5,column=3,padx=20, pady=20) 
+
+      elif self.is_existingBook:
+        bookstatus = messagebox.askyesno("Book Status",f"Is {self.current_book_name} book completed ? ")
+        if result and bookstatus:
+          self.bookstartbtn1.configure(state="disabled")
+          self.bookpausebtn1.configure(state="disabled")
+          self.bookstopbtn1.configure(state="disabled")
+          self.is_running = False  
+          self.is_completed = True 
+
+          self.ratingLabel1 = ct.CTkLabel(self.existingbookframe_2,text=f"Rate {self.current_book_name} :", fg_color="transparent",
+                                text_color="white", font=("Palatino Linotype", 20))
+          self.ratingLabel1.grid(row=5,column=2,padx=20, pady=20)
+
+          self.ratingEntry1 = ct.CTkEntry(self.existingbookframe_2, placeholder_text="eg. 3.5, 4.0, 5  ",justify="center",width=180,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+          self.ratingEntry1.grid(row=5,column=3,padx=20, pady=20)
+
+          self.reviewLabel1 = ct.CTkLabel(self.existingbookframe_2,text=f"Write book review :", fg_color="transparent",
+                                text_color="white", font=("Palatino Linotype", 20))
+          self.reviewLabel1.grid(row=6,column=2,padx=20, pady=20)
+
+          self.reviewEntry1 = ct.CTkTextbox(self.existingbookframe_2, width=600,height=400,bg_color="#3d3d3d",fg_color="transparent",font=("Palatino Linotype", 16))
+          self.reviewEntry1.grid(row=7,column=2, columnspan=3,padx=20, pady=20)
+
+          self.timesavebtn1 = ct.CTkButton(self.existingbookframe_2,text="Save Time",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.update_dbtime)
+          self.timesavebtn1.grid(row=8,column=3,padx=20, pady=20)
+
+        elif result:
+          self.bookstartbtn1.configure(state="disabled")
+          self.bookpausebtn1.configure(state="disabled")
+          self.bookstopbtn1.configure(state="disabled")
+          self.is_running = False  
+          
+          self.timesavebtn1 = ct.CTkButton(self.existingbookframe_2,text="Save Time",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.update_dbtime)
+          self.timesavebtn1.grid(row=5,column=3,padx=20, pady=20)
+
+        else: 
+          pass
+
+      else:
+        pass
+
+# -----------------------------------------------------   
+  
+    def update_dbtime(self):
+      if self.is_newBook:
+        print("Time updated in db ", self.booktimerlabel.cget("text"))
+        btime = self.booktimerlabel.cget("text")
+
+        if self.is_completed:
+          end_date = datetime.now().strftime("%d/%m/%Y")
+          print(self.current_table, self.current_book_name, btime,self.ratingEntry.get(),self.reviewEntry.get("0.0", "end-1c"),end_date)
+
+          ab.update_book_trr(self.current_table, self.current_book_name, btime,float(self.ratingEntry.get()),self.reviewEntry.get("0.0", "end-1c"), "Completed",end_date)
+
+          messagebox.showinfo("Successfull", "Your reading data is saved!")
+
+        else:
+          ab.update_book_time(self.current_table, self.current_book_name, btime, "In Progress")
+          messagebox.showinfo("Successfull", "Your reading time is saved!")
+            
+          self.gifimgframe.grid_forget()
+          self.bookdetailsframe.grid_forget()
+          self.bookreadframe.grid_forget()
+          self.apptitlelabel.configure(text="Dashboard")            
+          self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
+          self.is_completed=False
+
+      elif self.is_existingBook:
+        
+        print("Time updated in existing db ", self.booktimerlabel1.cget("text"))
+        btime = self.booktimerlabel1.cget("text")
+        
+        if self.is_completed:
+          end_date = datetime.now().strftime("%d/%m/%Y")
+          print(self.current_table, self.current_book_name, btime, float(self.ratingEntry1.get()),self.reviewEntry1.get("0.0", "end-1c"),end_date)
+          ab.update_book_trr(self.current_table, self.current_book_name, btime, float(self.ratingEntry1.get()),self.reviewEntry1.get("0.0", "end-1c"), "Completed",end_date)
+          messagebox.showinfo("Successfull", "Your reading data is saved!")
+
+        else:
+          ab.update_book_time(self.current_table, self.current_book_name, btime, "In Progress")
+          messagebox.showinfo("Successfull", "Your reading time is saved!")
+          
+          self.gifimgframe.grid_forget()
+          self.existingbookframe_1.grid_forget()
+          self.dropdown_frame.grid_forget()
+          self.existingbookframe_2.grid_forget()
+          self.booktitleframe.grid_forget()
+          self.apptitlelabel.configure(text="Dashboard")
+          self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
+          self.is_completed=False
+
+      else:
+          pass
   
 # -----------------------------------------------------    
   def read_existingBook(self):
@@ -453,6 +821,19 @@ class App(ct.CTk):
     self.bookdetailsframe.grid_forget()
     self.bookreadframe.grid_forget()
     self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
+
+
+  # -----------------------------------------------------    
+  
+  def backtodashboard2(self):
+    try:
+      self.backtodashboard1()
+      self.booklistframe.grid_forget()
+    
+    except:
+      self.booklistframe.grid_forget()
+      self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
+
 
 
 # -----------------------------------------------------Main function to run the app-----------------------------------------------------
