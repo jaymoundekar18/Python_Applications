@@ -888,7 +888,9 @@ class App(ct.CTk):
     self.bookstopbtn1 = ct.CTkButton(self.existingbookframe_2,text="Stop",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"),state="disabled", command=self.stoptimer)
     self.bookstopbtn1.grid(row=4,column=4,padx=20, pady=20)
 
-
+  
+# -----------------------------------------------------    
+  
   def update_dropdown(self, event=None):
     # Clear the previous dropdown
     for widget in self.dropdown_frame.winfo_children():
@@ -913,13 +915,18 @@ class App(ct.CTk):
                   command=lambda m=match: self.select_item(m)  
               )
         suggestion_button.pack(fill="x", pady=2)
-
+  
+  
+# -----------------------------------------------------    
+  
   def select_item(self, item):
     self.bsearchVar.set(item)
     for widget in self.dropdown_frame.winfo_children():
       widget.destroy()
 
-
+  
+# -----------------------------------------------------    
+  
   def srchBook(self):
     if self.bsearchBox.get() != '' and self.bsearchBox.get() in self.items:
       
@@ -1018,6 +1025,44 @@ class App(ct.CTk):
 
   
 # -----------------------------------------------------    
+  
+  def cleardispdata(self):
+    self.dispbookdata.configure(text="")
+    self.cleardispbookdata.grid_forget()
+
+  
+# -----------------------------------------------------    
+  
+  def aboutbookData(self, book):
+
+    def on_click():
+      self.cleardispbookdata.grid(row=2,column=0,padx=20, pady=10, sticky="nw")
+      if book[3] is not None:
+        read_time = book[3]
+        hr, min, sec = map(int, read_time.split(":"))
+        formatted_time = f"{hr} hrs, {min} min and {sec} sec"
+      else:
+        formatted_time = f"0 hrs, 0 min and 0 sec"
+        review = book[5] if book[5] else 'N/A'
+            
+      if len(review) > 90:
+        wrapped_review = "\n".join(textwrap.wrap(review, width=90))
+      
+      else:
+        wrapped_review = review
+
+      details = f"""
+      Book Title:- {book[0]} \t Author Name:- {book[1]} \t Genre:- {book[2]} \t Status:- {book[7]} \n 
+      Start Date: {book[8] if book[8] else 'N/A'} \t Reading Time:- {formatted_time} \t Pages:- {book[4]} \t Rating:- {book[6] if book[6] else 'N/A'} \n
+      End Date: {book[9] if book[9] else 'N/A'}\n
+      Review:- {wrapped_review}
+      """
+      self.dispbookdata.configure(text=details)
+
+    return on_click
+  
+# -----------------------------------------------------    
+  
   def show_book_analysis(self):
     pass
 # -----------------------------------------------------    
