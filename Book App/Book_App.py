@@ -1099,7 +1099,131 @@ class App(ct.CTk):
 
 # -----------------------------------------------------    
   def addoldbook(self):
-    pass
+    self.apptitlelabel.configure(text="Add Old Book")
+
+    self.dashboardframe.grid_forget()
+    
+    self.oldbookframe = ct.CTkFrame(self.main_frame, width=1200, height=50, fg_color="transparent")
+    self.oldbookframe.grid(row=2, column=0, pady=20, padx=20, sticky="nsew")
+
+    self.oldbooklabel = ct.CTkLabel(self.main_frame, text="Enter Details Here", fg_color="transparent",
+                                  text_color="white", font=("arial black", 26))
+    self.oldbooklabel.grid(row=2,column=1,padx=20, pady=20)
+
+    image = Image.open("img/home.png")
+    ctk_image = ct.CTkImage(light_image=image, size=(120,35))
+
+    self.backtodash = ct.CTkButton(self.oldbookframe,text="", hover_color="#3d3d3d",image=ctk_image,corner_radius=1000,bg_color="transparent",fg_color="transparent", width=150, height=40 ,compound="left", command=self.backtodashboard5)
+    self.backtodash.grid(row=0,column=0,padx=20, pady=10, sticky="nw")
+
+    
+    # Right image frame (on the left side)
+    self.rightimgframe = ct.CTkFrame(self.main_frame, width=1200 // 2, height=700, fg_color="transparent")
+    self.rightimgframe.grid(row=3, column=0, pady=20, padx=20, sticky="nsew")  
+
+    # Left Book Details frame (on the right side)
+    self.obdetailsframe = ct.CTkFrame(self.main_frame, width=1200 // 2, height=700)
+    self.obdetailsframe.grid(row=3, column=1, pady=20, padx=20, sticky="nsew")
+
+            
+    self.main_frame.grid_columnconfigure(0, weight=1)
+    self.main_frame.grid_columnconfigure(1, weight=1)
+    self.main_frame.grid_rowconfigure(1, weight=1)
+
+
+    # Image configuration on left side
+    self.rightimglabel = ct.CTkLabel(self.rightimgframe,text="")
+    self.rightimglabel.pack(padx=20, pady=10)
+
+    image = Image.open("img/book3.jpg")
+
+    ctk_image = ct.CTkImage(light_image=image, size=(575,1123))
+    
+    self.rightimglabel.configure(image=ctk_image)
+    self.rightimglabel.image = ctk_image
+
+                 
+    self.obname_label = ct.CTkLabel(self.obdetailsframe,text="Book Title   :", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.obname_label.grid(row=1,column=2,padx=20, pady=20, sticky="w")
+
+    self.obname_entry = ct.CTkEntry(self.obdetailsframe,placeholder_text="Enter Book Name ",justify="center",width=350,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+    self.obname_entry.grid(row=1,column=3,padx=20, pady=20)
+
+    self.obauthor_label = ct.CTkLabel(self.obdetailsframe,text="Book Author   :", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.obauthor_label.grid(row=2,column=2,padx=20, pady=20, sticky="w")
+
+    self.obauthor_entry = ct.CTkEntry(self.obdetailsframe,placeholder_text="Enter Book Author Name ",justify="center",width=350,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+    self.obauthor_entry.grid(row=2,column=3,padx=20, pady=20)
+
+    book_genres = [
+                'Action Fiction', 'Adventure Fiction', 'Alternate History', 'Autobiography', 'Biography', 
+                'Contemporary Literature', 'Contemporary Romance', 'Crime Fiction', 'Detective Fiction', 'Essay',
+                'Fairy Tale', 'Fantasy', 'Fantasy Fiction', 'Fiction', 'Genre Fiction', 'Graphic Novel', 
+                'Historical Fantasy', 'Historical Fiction', 'Historical Romance', 'History',
+                'Horror Fiction', 'Humor', 'Literary Fiction', 'Magical Realism', 'Memoir', 'Mystery', 'Narrative', 
+                'New Adult Fiction', 'Non-fiction', 'Novel', 'Paranormal Romance', 'Philosophy', 'Poetry', 'Quotation', 
+                'Romance', 'Romance Novel', 'Satire', 'Science', 'Science Fantasy', 'Science Fiction',
+                'Self-help Book', 'Short Story', 'Social Science', 'Speculative Fiction', 'Spirituality', 'Thriller', 
+                'Travel Literature', 'True Crime', 'Western Fiction', "Women's Fiction", 'Young Adult Literature'
+                ]
+
+    self.obgenre_label = ct.CTkLabel(self.obdetailsframe,text="Book Genre   :", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.obgenre_label.grid(row=3,column=2,padx=20, pady=20, sticky="w")
+
+    self.obgenre_entry = ct.CTkOptionMenu(self.obdetailsframe,values=book_genres,width=350,height=50,bg_color="transparent", fg_color="#ebb434",font=("arial", 16),text_color="white")
+    self.obgenre_entry.grid(row=3,column=3,padx=20, pady=20)
+
+    self.obreadtime_label = ct.CTkLabel(self.obdetailsframe,text="Book Reading Time   :", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.obreadtime_label.grid(row=4,column=2,padx=20, pady=20, sticky="w")
+
+    self.obreadtime_entry = ct.CTkEntry(self.obdetailsframe,placeholder_text="eg (04:56:23) like (hh:mm:ss) ",justify="center",width=350,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+    self.obreadtime_entry.grid(row=4,column=3,padx=20, pady=20)
+
+    self.obpage_label = ct.CTkLabel(self.obdetailsframe,text="Number of Book Pages   :", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.obpage_label.grid(row=5,column=2,padx=20, pady=20, sticky="w")
+
+    self.obpage_entry = ct.CTkEntry(self.obdetailsframe,placeholder_text="eg. 465 (Note: Numbers only)",justify="center",width=350,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+    self.obpage_entry.grid(row=5,column=3,padx=20, pady=20)
+
+    self.obstartdt_label = ct.CTkLabel(self.obdetailsframe,text="Book Started Date   :", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.obstartdt_label.grid(row=6,column=2,padx=20, pady=20, sticky="w")
+
+    self.obstartdt_entry = ctk_date_picker.CTkDatePicker(self.obdetailsframe,width=280,height=50,bg_color="transparent",fg_color="transparent")
+    self.obstartdt_entry.grid(row=6,column=3,padx=20, pady=20)
+
+    self.obenddt_label = ct.CTkLabel(self.obdetailsframe,text="Book End Date   :", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.obenddt_label.grid(row=7,column=2,padx=20, pady=20, sticky="w")
+
+    self.obenddt_entry = ctk_date_picker.CTkDatePicker(self.obdetailsframe,width=280,height=50,bg_color="transparent",fg_color="transparent")
+    self.obenddt_entry.grid(row=7,column=3,padx=20, pady=20)
+
+    self.obrate_label = ct.CTkLabel(self.obdetailsframe,text="Book Rating   :", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.obrate_label.grid(row=8,column=2,padx=20, pady=20, sticky="w")
+
+    self.obrate_entry = ct.CTkEntry(self.obdetailsframe,placeholder_text="eg. 4.8 (Note: Float Numbers only)",justify="center",width=350,height=50,bg_color="transparent",fg_color="transparent",font=("arial", 16))
+    self.obrate_entry.grid(row=8,column=3,padx=20, pady=20)
+
+    self.obreview_label = ct.CTkLabel(self.obdetailsframe,text="Book Review   :", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.obreview_label.grid(row=9,column=2,padx=20, pady=20, sticky="nw")
+
+    self.obreview_entry = ct.CTkTextbox(self.obdetailsframe, width=350,height=400,bg_color="#3d3d3d",fg_color="transparent",font=("Palatino Linotype", 16))
+    self.obreview_entry.grid(row=9,column=3,padx=20, pady=20)
+            
+   
+    self.oldbookSub_button = ct.CTkButton(self.obdetailsframe,text="",image=self.subbtnimg, hover_color="#3d3d3d",corner_radius=1000,bg_color="transparent",fg_color="transparent", width=180, height=40 ,compound="left", command=self.submit_oldbook_data)
+    self.oldbookSub_button.grid(row=10,column=3,padx=20, pady=40)
+    
+    
+    messagebox.showwarning("Important Note","Books that are already completed will be added!")
     
 # -----------------------------------------------------    
 
