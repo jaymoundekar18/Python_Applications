@@ -1226,7 +1226,37 @@ class App(ct.CTk):
     messagebox.showwarning("Important Note","Books that are already completed will be added!")
     
 # -----------------------------------------------------    
+  def submit_oldbook_data(self):
+    try:
+      if self.obname_entry.get().strip().replace(" ","") == "" or self.obauthor_entry.get().strip().replace(" ","") == "" or self.obgenre_entry.get().strip().replace(" ","") == "" or self.obreadtime_entry.get().strip().replace(" ","") == "" or self.obpage_entry.get().strip().replace(" ","") == "" or self.obstartdt_entry.get_date().strip().replace(" ","") == "" or self.obenddt_entry.get_date().strip().replace(" ","") == "" or self.obrate_entry.get().strip().replace(" ","") == "" or self.obreview_entry.get("0.0", "end-1c") == "":
+        messagebox.showwarning("Warning", "All fields are required!")
+            
+      elif isinstance(int(self.obpage_entry.get().strip().replace(" ","")), int)==False or isinstance(float(self.obrate_entry.get().strip().replace(" ","")), float)==False:
+        messagebox.showwarning("Warning","Enter Field value as mentioned!")
+                
+      else:
+        print(f''' 
+              Table Name : {self.current_table}\n
+              Book Name : {self.obname_entry.get().strip().replace(" ","")}\n
+              Author : {self.obauthor_entry.get().strip().replace(" ","")}\n
+              Genre : {self.obgenre_entry.get()}\n
+              Time : {self.obreadtime_entry.get().strip().replace(" ","")}\n
+              Pages : {int(self.obpage_entry.get().strip().replace(" ",""))}\n
+              Start : {self.obstartdt_entry.get_date().strip().replace(" ","")}\n
+              End : {self.obenddt_entry.get_date().strip().replace(" ","")}\n
+              Rating : {float(self.obrate_entry.get().strip().replace(" ",""))}\n
+              Review : {self.obreview_entry.get("0.0", "end-1c")}
+              ''')
+                
+        ab.add_old_book(self.current_table,self.obname_entry.get(),self.obauthor_entry.get(),self.obgenre_entry.get(),int(self.obpage_entry.get().strip().replace(" ","")),self.obreadtime_entry.get().strip().replace(" ",""),self.obstartdt_entry.get_date().strip().replace(" ",""),self.obenddt_entry.get_date().strip().replace(" ",""),float(self.obrate_entry.get().strip().replace(" ","")),self.obreview_entry.get("0.0", "end-1c"),"Completed")
 
+        messagebox.showinfo("Success","Your Book Data Saved Successfully!")
+        
+    except Exception as e:
+      messagebox.showwarning("Warning","Enter Field value as mentioned!")
+
+  # -----------------------------------------------------    
+    
   def backtodashboard1(self):
     self.apptitlelabel.configure(text="Dashboard")
     self.current_book_name=None
