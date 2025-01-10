@@ -1265,18 +1265,67 @@ class App(ct.CTk):
     self.bookreadframe.grid_forget()
     self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
 
-
   # -----------------------------------------------------    
-  
+    
   def backtodashboard2(self):
     try:
       self.backtodashboard1()
       self.booklistframe.grid_forget()
-    
+
     except:
       self.booklistframe.grid_forget()
       self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
 
+  # -----------------------------------------------------    
+    
+  def backtodashboard3(self):
+    try:
+      self.backtodashboard1()
+      self.booktitleframe.grid_forget()
+      self.dropdown_frame.grid_forget()
+      self.existingbookframe_1.grid_forget()
+      self.existingbookframe_2.grid_forget()
+
+    except:
+      self.dropdown_frame.grid_forget()
+      self.booktitleframe.grid_forget()
+      self.existingbookframe_1.grid_forget()
+      self.existingbookframe_2.grid_forget()
+      self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
+
+  # -----------------------------------------------------    
+    
+  def backtodashboard4(self):
+    try:
+      self.backtodashboard1()
+      self.bookanalysisframe.pack_forget()
+      self.tableframe.pack_forget()
+      self.analysistitlelabel.pack_forget()
+
+    except:
+      self.bookanalysisframe.pack_forget()
+      self.tableframe.pack_forget()
+      self.analysistitlelabel.pack_forget()
+      self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
+      self.titlelabelframe.grid_configure(row=0, column=0, columnspan=10,pady=20, padx=20) 
+
+  # -----------------------------------------------------    
+    
+  def backtodashboard5(self):
+    try:
+      self.backtodashboard1()
+      self.oldbookframe.grid_forget()
+      self.rightimgframe.grid_forget()     
+      self.obdetailsframe.grid_forget()
+      self.oldbooklabel.grid_forget()
+    
+    except:
+      self.oldbookframe.grid_forget()
+      self.rightimgframe.grid_forget()     
+      self.obdetailsframe.grid_forget()
+      self.oldbooklabel.grid_forget()
+      self.dashboardframe.grid_configure(row=2, column=0, pady=20, padx=20, sticky="nsew")
+            
 
 
 # -----------------------------------------------------Main function to run the app-----------------------------------------------------
