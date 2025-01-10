@@ -914,7 +914,46 @@ class App(ct.CTk):
               )
         suggestion_button.pack(fill="x", pady=2)
 
-    
+  def select_item(self, item):
+    self.bsearchVar.set(item)
+    for widget in self.dropdown_frame.winfo_children():
+      widget.destroy()
+
+
+  def srchBook(self):
+    if self.bsearchBox.get() != '' and self.bsearchBox.get() in self.items:
+      
+      messagebox.showinfo("Book Found",f"{self.bsearchBox.get()} is present in the database!")
+
+      self.existingbookframe_1.grid_forget()
+      self.existingbookframe_2.grid(row=2, column=1, pady=20, padx=20, sticky="nsew")
+      self.current_book_name=self.bsearchBox.get()
+      print("Searched book : ",self.bsearchBox.get())
+      print("Current book : ",self.current_book_name)
+
+      res = ab.show_book_data(self.current_table)
+
+      print(res)
+      nameTime = dict()
+      for i in res:
+          nameTime[i[0]] = i[3]
+
+      print(nameTime)
+      self.booktitle.configure(text=f"Reading : {self.bsearchBox.get()}")
+      self.booktimerlabel1.configure(text= nameTime[self.bsearchBox.get()])
+      
+      
+      time_obj = datetime.strptime(nameTime[self.bsearchBox.get()], "%H:%M:%S")
+      self.existingTime = time_obj.hour * 3600 + time_obj.minute * 60 + time_obj.second
+      
+      print(nameTime)
+
+
+    elif self.bsearchBox.get() == '':
+        messagebox.showerror("Warning","Enter Book Name")
+
+    else:
+        messagebox.showerror("Error",f"{self.bsearchBox.get()} is not present!")  
   
 # -----------------------------------------------------    
   def show_book_list(pass):
