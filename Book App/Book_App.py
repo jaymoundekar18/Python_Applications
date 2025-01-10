@@ -957,7 +957,66 @@ class App(ct.CTk):
   
 # -----------------------------------------------------    
   def show_book_list(pass):
-    pass
+    self.apptitlelabel.configure(text="Book List")
+
+    self.dashboardframe.grid_forget()
+
+
+    self.booklistframe = ct.CTkFrame(self.main_frame, width=1200, height=700, fg_color="transparent")
+    self.booklistframe.grid(row=2, column=0, pady=20, padx=20, sticky="nsew")
+
+    image = Image.open("img/home.png")
+    ctk_image = ct.CTkImage(light_image=image, size=(120,35))
+    self.backtodash = ct.CTkButton(self.booklistframe,text="", hover_color="#3d3d3d",image=ctk_image,corner_radius=1000,bg_color="transparent",fg_color="transparent", width=150, height=40 ,compound="left", command=self.backtodashboard2)
+    self.backtodash.grid(row=0,column=0,padx=20, pady=10, sticky="nw")
+
+    
+
+    self.dispbookdata = ct.CTkLabel(self.booklistframe,text="", fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.dispbookdata.grid(row=2,column=1, columnspan=6,padx=20, pady=20, sticky="w")
+    
+    self.cleardispbookdata = ct.CTkButton(self.booklistframe,text="Clear data", hover_color="#3d3d3d",corner_radius=1000,bg_color="transparent", width=120, height=40 ,compound="left",text_color="white", font=("arial", 18), command=self.cleardispdata)
+    # self.cleardispbookdata.grid(row=2,column=0,padx=20, pady=10, sticky="nw")
+
+    res = ab.findUserBook(self.current_table)
+
+    bookData = ab.show_book_data(self.current_table)
+
+    books=[]
+    for book in res:
+      books.append(book[0])
+
+    self.bookcount = ct.CTkLabel(self.booklistframe,text=f"Books Count : {len(books)}" ,width=250,height=60,text_color="white",bg_color="transparent",font=("Verdana", 16,"bold"))
+    self.bookcount.grid(row=0,column=5,padx=20, pady=20)
+
+    rowNo = 4
+    colNo = 2
+    blen = 0
+    bd= 0
+    for item in books:
+      button = ct.CTkButton(
+            self.booklistframe,
+            text=item,
+            width=250,
+            height=60,
+            corner_radius=10,
+            text_color="white",
+            bg_color="transparent",
+            font=("arial", 20, "bold"),
+            command=self.aboutbookData(bookData[bd])  # Pass item as argument
+        )
+      button.grid(padx=10, pady=10, row=rowNo, column=colNo, sticky="nsew")  
+      colNo +=1
+      blen += 1
+      bd+=1
+
+      if blen > 3:
+        colNo = 2
+        rowNo += 1
+        blen = 0
+
+  
 # -----------------------------------------------------    
   def show_book_analysis(self):
     pass
