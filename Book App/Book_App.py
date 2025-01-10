@@ -429,7 +429,7 @@ class App(ct.CTk):
     self.bookstopbtn = ct.CTkButton(self.bookreadframe,text="Stop",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"),state="disabled", command=self.stoptimer)
     self.bookstopbtn.grid(row=4,column=4,padx=20, pady=20)
 
-
+  
 # -----------------------------------------------------   
   
   def valBookData(self):
@@ -889,7 +889,32 @@ class App(ct.CTk):
     self.bookstopbtn1.grid(row=4,column=4,padx=20, pady=20)
 
 
+  def update_dropdown(self, event=None):
+    # Clear the previous dropdown
+    for widget in self.dropdown_frame.winfo_children():
+      widget.destroy()
 
+    # Get the search query
+    query = self.bsearchVar.get().lower()
+
+    if query:          # Display dropdown only if query is not empty
+      
+      matches = [item for item in self.items if query in item.lower()]  
+      for match in matches:
+        suggestion_button = ct.CTkButton(
+                  self.dropdown_frame,
+                  text=match,
+                  corner_radius=0,
+                  fg_color="#a3a3a3",
+                  hover_color="#3d3d3d",
+                  text_color="white",
+                  font=("Palatino Linotype", 20),
+                  width=400,
+                  command=lambda m=match: self.select_item(m)  
+              )
+        suggestion_button.pack(fill="x", pady=2)
+
+    
   
 # -----------------------------------------------------    
   def show_book_list(pass):
