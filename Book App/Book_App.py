@@ -800,8 +800,97 @@ class App(ct.CTk):
           pass
   
 # -----------------------------------------------------    
+ 
   def read_existingBook(self):
-    pass
+    self.apptitlelabel.configure(text="Read Existing Book")
+
+    self.dashboardframe.grid_forget()
+    print(self.current_table, self.current_user_name)
+    res = ab.findUserBook(self.current_table)
+
+    books=[]
+    for book in res:
+        books.append(book[0])
+    print(books)    
+    self.items= books
+    self.bsearchVar = ct.StringVar()
+
+    # Image and GIF Frame (on the left side)
+    self.gifimgframe = ct.CTkFrame(self.main_frame, width=1200 // 2, height=700, fg_color="transparent")
+    self.gifimgframe.grid(row=2, column=0, pady=20, padx=20, sticky="nsew")  
+
+    
+    image = Image.open("img/home.png")
+    ctk_image = ct.CTkImage(light_image=image, size=(120,35))
+    self.backtodash = ct.CTkButton(self.gifimgframe,text="", hover_color="#3d3d3d",image=ctk_image,corner_radius=1000,bg_color="transparent",fg_color="transparent", width=150, height=40 ,compound="left", command=self.backtodashboard3)
+    self.backtodash.pack(padx=20, pady=10, anchor="nw")
+    
+    self.gifimglabel1 = ct.CTkLabel(self.gifimgframe,text="")
+    self.gifimglabel1.pack(padx=20, pady=90)
+
+    image = Image.open("img/read0.png")
+
+    ctk_image = ct.CTkImage(light_image=image, size=(600,400))
+    
+    self.gifimglabel1.configure(image=ctk_image)
+    self.gifimglabel1.image = ctk_image
+
+    # Read Existing Book Frame (on the right side)
+    self.existingbookframe_1 = ct.CTkFrame(self.main_frame, width=1200 // 2, height=700, fg_color="transparent")
+    self.existingbookframe_1.grid(row=2, column=1, pady=20, padx=20, sticky="nsew")
+    
+    self.bsearchBox = ct.CTkEntry(self.existingbookframe_1, textvariable=self.bsearchVar,justify="center" , width=400, height=40, fg_color="transparent",
+                                  text_color="white", font=("Palatino Linotype", 20))
+    self.bsearchBox.grid(row=0,column=0, columnspan=4,padx=20, pady=20)
+    self.bsearchBox.bind("<KeyRelease>", self.update_dropdown)
+
+
+    self.bsearchBtn = ct.CTkButton(self.existingbookframe_1,text="Search",width=60, height=40,corner_radius=10,text_color="white",bg_color="transparent", font=("Palatino Linotype", 20), command=self.srchBook)
+    self.bsearchBtn.grid(row=0,column=5,padx=20, pady=20)
+    
+    self.dropdown_frame = ct.CTkFrame(self.existingbookframe_1, fg_color="transparent")
+    self.dropdown_frame.grid(row=1, column=0, columnspan=4)
+
+
+    #############################################
+    self.existingbookframe_2 = ct.CTkFrame(self.main_frame, width=1200 // 2, height=700, fg_color="transparent")
+    # self.existingbookframe_2.grid(row=2, column=1, pady=20, padx=20, sticky="nsew")
+
+    self.is_running = False
+    self.is_existingBook = True
+    self.is_newBook = False
+
+    self.booktitleframe = ct.CTkFrame(self.existingbookframe_2, width=600, height=100, fg_color="transparent")
+    self.booktitleframe.grid(row=0, column=0, columnspan=6, pady=20, padx=20, sticky="nsew")
+
+    self.booktitle = ct.CTkLabel(self.booktitleframe, text="", fg_color="transparent",justify="center",
+                                  text_color="white", font=("arial black", 32))
+    self.booktitle.grid(row=0,column=3,padx=20, pady=20,sticky="nsew") 
+
+    self.booktimerlabel1 = ct.CTkLabel(self.existingbookframe_2, text="00:00:00", fg_color="transparent",
+                                  text_color="white", font=("Verdana ", 32,"bold"))
+    self.booktimerlabel1.grid(row=2,column=3,padx=20, pady=20) 
+
+    image = Image.open("img/sandclock.gif")
+
+    self.sandclockimg1 = ct.CTkImage(light_image=image, size=(100,100))
+    
+
+    self.clockimglabel1 = ct.CTkLabel(self.existingbookframe_2, text="", image=self.sandclockimg1 , fg_color="transparent")
+    self.clockimglabel1.grid(row=3,column=3,padx=20, pady=20)
+
+    self.bookstartbtn1 = ct.CTkButton(self.existingbookframe_2,text="Start Timer",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"), command=self.start)
+    self.bookstartbtn1.grid(row=4,column=2,padx=20, pady=20)
+
+    self.bookpausebtn1 = ct.CTkButton(self.existingbookframe_2,text="Pause",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"),state="disabled", command=self.pausetimer)
+    self.bookpausebtn1.grid(row=4,column=3,padx=20, pady=20)
+
+    self.bookstopbtn1 = ct.CTkButton(self.existingbookframe_2,text="Stop",width=180,height=50,corner_radius=10,text_color="white",bg_color="transparent",font=("arial", 20,"bold"),state="disabled", command=self.stoptimer)
+    self.bookstopbtn1.grid(row=4,column=4,padx=20, pady=20)
+
+
+
+  
 # -----------------------------------------------------    
   def show_book_list(pass):
     pass
