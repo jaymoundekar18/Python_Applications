@@ -1064,7 +1064,39 @@ class App(ct.CTk):
 # -----------------------------------------------------    
   
   def show_book_analysis(self):
-    pass
+    self.apptitlelabel.configure(text="Book Analysis")
+
+    self.dashboardframe.grid_forget()
+    self.titlelabelframe.grid_forget()
+
+    self.analysistitlelabel = ct.CTkLabel(self.main_frame, text="Book Analysis", fg_color="transparent",
+                                  text_color="white", font=("arial black", 38))
+    self.analysistitlelabel.pack()
+
+
+    self.bookanalysisframe = ct.CTkFrame(self.main_frame, width=1200, height=40, fg_color="transparent")
+    self.bookanalysisframe.pack(pady=20, padx=20)
+
+    image = Image.open("img/home.png")
+    ctk_image = ct.CTkImage(light_image=image, size=(120,35))
+    self.backtodash = ct.CTkButton(self.bookanalysisframe,text="", hover_color="#3d3d3d",image=ctk_image,corner_radius=1000,bg_color="transparent",fg_color="transparent", width=150, height=40 ,compound="left", command=self.backtodashboard4)
+    self.backtodash.grid(row=0, column=0, padx=20, pady=10,sticky="w")
+    
+    self.tempframe = ct.CTkFrame(self.bookanalysisframe, width=800, height=40, fg_color="transparent")
+    self.tempframe.grid(row=0, column=1, padx=20, pady=10)
+
+    self.editBookData = ct.CTkButton(self.bookanalysisframe,text="Edit Data", hover_color="#3d3d3d",corner_radius=1000,bg_color="transparent", width=150, height=40 , font=("Palatino Linotype", 20),compound="left", command=self.backtodashboard4)
+    self.editBookData.grid(row=0, column=8, padx=20, pady=10,sticky="e")
+
+
+    self.tableframe = ct.CTkFrame(self.main_frame, fg_color="transparent", width=700)
+    self.tableframe.pack(fill='both', expand=True, padx=20, pady=20)
+
+    df = ab.show_all_data(self.current_table)
+
+    table = Table(self.tableframe, dataframe=df, showtoolbar=True, showstatusbar=True)
+    table.show()
+
 # -----------------------------------------------------    
   def addoldbook(self):
     pass
