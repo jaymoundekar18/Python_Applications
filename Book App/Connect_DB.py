@@ -68,11 +68,11 @@ class DB_Connect():
 
 
 ## Adding New Book to the Particular Users Table
-  def save_new_book(self, tablename, bookname, bookauthor,genre,bpages):
-    query = "INSERT INTO " + tablename + "(book_name, book_author, genre, book_pages) values (?,?,?,?)"
+  def save_new_book(self, tablename, bookname, bookauthor,genre,bpages,readtime, s_date, status):
+    query = "INSERT INTO " + tablename + "(book_name, book_author, genre, book_pages,reading_time,start_date,book_status) values (?,?,?,?,?,?,?)"
 
     try:
-      self.cursor.execute(query, (bookname, bookauthor, genre, bpages))
+      self.cursor.execute(query, (bookname, bookauthor, genre, bpages,readtime,s_date,status))
       print("DB : new book added")
 
       query = "SELECT * FROM " + tablename
@@ -117,6 +117,23 @@ class DB_Connect():
     except Exception as e:
       print(e)
 
+  ## Add Old Book Data
+  def add_old_book(self, tablename, bookname, author, genre, pages, newtime, stime, etime, rating, review, status):
+    query = "INSERT INTO " + tablename + " (book_name, book_author, genre, reading_time, book_pages, book_review, rating, book_status, start_date, end_date) VALUES (?,?,?,?,?,?,?,?,?,?)"
+    try : 
+      self.cursor.execute(query,(bookname, author,genre,newtime,pages,review,rating,status,stime,etime))
+      self.conn.commit()
+      print("DB : time updated")
+
+      query = "SELECT * FROM " + tablename
+      self.cursor.execute(query)
+      res = self.cursor.fetchall()
+      print(res)
+    
+    except Exception as e:
+      print(e)
+
+  
   ## Show All Book Data
   def show_all_data(self,tablename):
 
